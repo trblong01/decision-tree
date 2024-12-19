@@ -1,0 +1,75 @@
+body {
+    background: #CCC;
+    padding: 20px 20px 20px 20px;
+}
+
+#tree-panel {
+    position: relative;
+    background: #fcfcfc;
+    overflow: hidden;
+}
+
+#controls {
+    position: absolute;
+    top: 50px;
+    left: 40px;
+    z-index: 100;
+}
+/* 
+.modal-dialog {
+    z-index: -1 !important;
+} */
+
+.modal-header, h4, .close {
+    background-color: #5cb85c;
+    color:white !important;
+    text-align: center;
+    font-size: 30px;
+  }
+  .modal-footer {
+    background-color: #f9f9f9;
+  }
+  .modal-content {
+    width: 1480px;
+    margin-left: -460px;
+  }
+
+/* optional link coloring */
+.truthy-link {
+     stroke: #5998ff;
+}
+
+.truthy-node {
+    stroke: #5998ff;
+}
+
+.falsey-link {
+    stroke: #ff554b;
+}
+
+.falsey-node {
+    stroke: #ff554b;
+}
+
+.functions {
+    margin-left: 10px;
+    margin-right: 30px;
+}
+.properties {
+    margin-left: 10px;
+    margin-right: 30px;
+}
+
+.param1 {
+    margin-left: 10px;
+    margin-right: 30px;
+}
+
+.param2 {
+    margin-left: 10px;
+    margin-right: 30px;
+}
+
+.saveCondition {
+    margin: 10px;
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SSI Rule Tree Testing</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="/css/decision-tree-builder.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/demo.css" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        * {
+          box-sizing: border-box;
+        }
+        
+        /* Create two equal columns that floats next to each other */
+        .column {
+          float: left;
+          width: 30%;
+          padding: 10px;
+          height: 300px; /* Should be removed. Only for demonstration */
+        }
+        
+        /* Clear floats after the columns */
+        .row:after {
+          content: "";
+          display: table;
+          clear: both;
+        }
+        </style>
+</head>
+<body>
+
+<h2>Testing Rule Tree</h2>
+
+<div class="row" >
+    <div class="column" style="padding: 20px;">
+        <h3>Input message</h3>
+        <textarea id="inputTest" name="input" rows="25" cols="80"></textarea>
+        <br><br>
+        
+    </div>
+    <div class="column" style="padding-left: 200px;padding-top: 280px">
+        <button id="testBtn"  class="btn btn-success btn-default ">RUN ============></button>
+    </div>
+    <div class="column">
+        <h3>Output</h3>
+        <textarea id="outputTest" name="input" rows="25" cols="80"></textarea>
+    </div>
+</div>
+
+</body>
+</html>
+
+<script>
+
+$(document).ready(function () {
+    $("#testBtn").click(function(){
+        
+        let dataInput = $("#inputTest").val();
+        console.log("Test with data: ", dataInput);
+        $.ajax({
+            url: 'http://localhost:8080/api/rulemap/execute/',
+            type: 'POST',
+            dataType: "text",
+            contentType: "application/json",
+            data: JSON.stringify(dataInput),
+            success: function(data) {
+                //create node on graph
+                if(data){
+                    // let outPut = JSON.stringify(JSON.parse(data));
+                    $("#outputTest").val(data);
+                }else{
+                    alert("Run fail, code " + data);
+                }
+                
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(errorThrown);
+                alert("Can not Run " + jqXHR.responseText)
+            }
+	    })
+    });
+
+});
+
+</script>
